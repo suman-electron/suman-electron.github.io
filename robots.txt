@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sumanbera.dev/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin areas (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all assets
+Allow: /assets/
+Allow: /js/
+Allow: /css/
+Allow: /images/
+
+# Allow all pages
+Allow: /about
+Allow: /expertise
+Allow: /projects
+Allow: /contact 
+
+
+
+docker build --target ghpages --build-arg GHPAGES=1 -t portfolio-ghpages:latest . && rm -rf "/home/workstation/Documents/cursor/suman-electron.github.io" && mkdir -p "/home/workstation/Documents/cursor/suman-electron.github.io" && docker create --name temp-gh2 portfolio-ghpages:latest /bin/sh -c 'echo exporting' >/dev/null && docker cp temp-gh2:/ "/home/workstation/Documents/cursor/suman-electron.github.io" && docker rm -f temp-gh2 >/dev/null && ls -la "/home/workstation/Documents/cursor/suman-electron.github.io" | cat
